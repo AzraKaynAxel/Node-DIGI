@@ -16,7 +16,6 @@ const { apiResponse } = require('./11_async');
  */
 
 
-const parallel
-
+const parallel = async (url1, url2, url3) => await Promise.all([apiResponse(url1), apiResponse(url2), apiResponse(url3)]);
 
 module.exports = { parallel };

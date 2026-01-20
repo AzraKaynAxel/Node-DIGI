@@ -11,6 +11,9 @@ const connectDB = async () => {
         await sequelize.authenticate();
         console.log('Connection to SQLite has been established successfully.');
 
+        // Initialiser les associations
+        require('../../models/associations');
+
         // Sync models
         await sequelize.sync({ alter: true });
         console.log('All models were synchronized successfully.');

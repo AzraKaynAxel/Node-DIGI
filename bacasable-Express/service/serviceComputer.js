@@ -9,8 +9,23 @@ const service = {
             }]
         });
     },
+    getById: async (id) => {
+        return await Computer.findByPk(id, {
+            include: [{
+                model: Park,
+                as: 'park'
+            }]
+        });
+    },
     create: async (computerData) => {
         return await Computer.create(computerData);
+    },
+    update: async (id, computerData) => {
+        return await Computer.update(computerData, {
+            where: {
+                id: id
+            }
+        });
     }
 };
 

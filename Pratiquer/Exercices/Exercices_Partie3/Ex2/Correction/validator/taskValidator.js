@@ -19,7 +19,7 @@ const taskValidationRules = () => {
             .optional()
             .isISO8601().withMessage('La date de fin doit être une date valide (ISO8601)')
             .custom((value, { req }) => {
-                if (req.body.date_fin && req.body.date_debut && new Date(req.body.date_fin) <= new Date(req.body.date_debut)) {
+                if (value && req.body.date_debut && new Date(value) <= new Date(req.body.date_debut)) {
                     throw new Error('La date de fin doit être après la date de début');
                 }
                 return true;

@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 const { connectDB } = require("./db/sequelize/db");
+
 const taskRouter = require("./router/taskRouter");
 const listRouter = require("./router/listRouter");
+const authRouter = require("./router/authRouter");
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -11,8 +13,10 @@ app.use(express.json());
 connectDB();
 
 // Routes
+app.use("/auth", authRouter);
 app.use("/tasks", taskRouter);
 app.use("/lists", listRouter);
+
 
 const PORT = 3000;
 app.listen(PORT, () => {

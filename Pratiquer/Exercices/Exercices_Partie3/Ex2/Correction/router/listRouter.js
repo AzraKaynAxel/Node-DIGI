@@ -3,10 +3,14 @@ const router = express.Router();
 const listController = require("../controller/listController");
 const { listValidationRules, listIdValidationRules } = require("../validator/listValidator");
 const validate = require("../validator/validate");
+const authMiddleware = require("../middleware/authMiddleware");
+
+router.use(authMiddleware);
 
 router.get("/", listController.getAllLists);
+
 router.get("/:id", listIdValidationRules(), validate, listController.getListById);
-router.post("/", listValidationRules(), listIdValidationRules(), validate, listController.createList);
+router.post("/", listValidationRules(), validate, listController.createList);
 
 module.exports = router;
 
